@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Teléfonos - 2</title>
+  </head>
+  <body>
+    <h5>Listado de telefonos - {{numero}}</h5>
+
+    {% for e in datos %}
+
+    <ol>
+      <li><b>Teléfono: </b>{{e['telefono']}}</li>
+      <li><b>Tipo: </b>{{e['tipo']}}</li>
+      <li><b>Estudiante: </b>{{e['estudiante']}}</li>
+    </ol>
+    <hr>
+    {% endfor%}
+  </body>
+</html>

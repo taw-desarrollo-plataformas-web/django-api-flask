@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo</title>
+  </head>
+  <body>
+    <h5>Listado - de estudiantes - {{numero_estudiantes}}</h5>
+
+    {% for e in estudiantes %}
+
+    <ol>
+      <li><b>Nombre: </b>{{e['nombre']}}</li>
+      <li><b>Apellido: </b>{{e['apellido']}}</li>
+      <li><b>Cédula: </b>{{e['cedula']}}</li>
+      <li><b>Correo: </b>{{e['correo']}}</li>
+    </ol>
+    <hr>
+    {% endfor%}
+  </body>
+</html>
