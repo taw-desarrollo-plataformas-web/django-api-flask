@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nuevo Número Telefónico</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Crear Nuevo Número Telefónico</h1>
+{% extends "master.html" %}
+
+{% block title %}+ Teléfono{% endblock %}
+
+{% block content %}
+    <h1>Crear Nuevo Número Telefónico</h1>
 
         {# Mostrar mensajes flash de Flask #}
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -50,7 +45,4 @@
             </form>
         
 
-        <a href="{{ url_for('los_estudiantes') }}" class="back-link">Volver a la lista de estudiantes</a>
-    </div>
-</body>
-</html>
+{% endblock %}

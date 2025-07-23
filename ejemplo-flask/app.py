@@ -5,39 +5,17 @@ import json
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'una-clave-secreta-000001'
 
-token = '0358ee5e99661f9b6c4d9f01f071b7f93fb2054e'
-headers = {
-        "Authorization": f"Token {token}",
-        "Content-Type": "application/json"
-    }
 
 @app.route("/")
-def hello_world():
-    return "<p>Hola mundo</p>"
-
+def index():
+    return render_template("index.html")
 
 @app.route("/los/estudiantes")
 def los_estudiantes():
     """
     """
     r = requests.get("http://localhost:8000/api/estudiantes/",
-            auth=('rene', '1'))
-    print("---------------------")
-    print(r.content)
-    print("---------------------")
-    estudiantes = json.loads(r.content)['results']
-
-    numero_estudiantes = json.loads(r.content)['count']
-    return render_template("losestudiantes.html", estudiantes=estudiantes,
-    numero_estudiantes=numero_estudiantes)
-
-@app.route("/los/estudiantes/dos")
-def los_estudiantes_dos():
-    """
-    """
-
-    r = requests.get("http://localhost:8000/api/estudiantes/", headers=headers)
-
+            auth=('reroes', '1'))
     print("---------------------")
     print(r.content)
     print("---------------------")
@@ -53,7 +31,7 @@ def los_telefonos():
     """
     """
     r = requests.get("http://localhost:8000/api/numerosts/",
-            auth=('rene', '1'))
+            auth=('reroes', '1'))
     datos = json.loads(r.content)['results']
     numero = json.loads(r.content)['count']
     return render_template("lostelefonos.html", datos=datos,
@@ -65,7 +43,7 @@ def los_telefonos_dos():
     """
     """
     r = requests.get("http://localhost:8000/api/numerosts/",
-            headers=headers)
+            auth=('reroes', '1'))
     datos = json.loads(r.content)['results']
     numero = json.loads(r.content)['count']
     datos2 = []
@@ -88,7 +66,7 @@ def obtener_estudiante(url):
     """
     http://127.0.0.1:8000/api/estudiantes/4/
     """
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, auth=('reroes', '1'))
     nombre_estudiante = json.loads(r.content)['nombre']
     return nombre_estudiante
 
@@ -110,16 +88,12 @@ def agregar_estudiante():
             'correo': correo
         }
 
-        # Configuración de los headers para la autenticación por Token
-        headers = {
-            "Authorization": f"Token {token}",
-            "Content-Type": "application/json"
-        }
+        
 
         # Realizar la petición POST a la API de Django
         r = requests.post("http://localhost:8000/api/estudiantes/",
                               json=estudiante_data, # 'json' serializa el diccionario a JSON automáticamente
-                              headers=headers)
+                              auth=('reroes', '1'))
 
 
         print(f"Status Code (Crear Estudiante): {r.status_code}")
@@ -137,7 +111,7 @@ def crear_numero_telefonico():
     """
     estudiantes_disponibles = []
 
-    r_estudiantes = requests.get("http://localhost:8000/api/estudiantes/", headers=headers)
+    r_estudiantes = requests.get("http://localhost:8000/api/estudiantes/", auth=('reroes', '1'))
     estudiantes_disponibles = json.loads(r_estudiantes.content)['results']
 
     if request.method == 'POST':
@@ -154,7 +128,7 @@ def crear_numero_telefonico():
 
         r = requests.post("http://localhost:8000/api/numerosts/",
                               json=numero_telefonico_data,
-                              headers=headers)
+                              auth=('reroes', '1'))
 
         print(f"Status Code (Crear Número): {r.status_code}")
 

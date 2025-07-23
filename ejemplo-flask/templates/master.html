@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Demo Flask{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='hoja.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Sitio - Flask - Django</h1>
+
+        <nav>
+            <a href="{{ url_for('index') }}">inicio</a> |
+            <a href="{{ url_for('los_estudiantes') }}">ver estudiantes</a> |
+            <a href="{{ url_for('los_telefonos') }}">ver teléfonos</a> | 
+            <a href="{{ url_for('los_telefonos_dos') }}">ver teléfonos 2</a> | 
+            <a href="{{ url_for('agregar_estudiante') }}">crear estudiante</a> |
+            <a href="{{ url_for('crear_numero_telefonico') }}">crear teléfono</a> |
+        </nav>
+    </header>
+    <h5>Uso de datos de Django desde Flask</h5>
+    <hr>
+    <main>
+        {% block content %}
+        <!-- Contenido específico de cada página -->
+        {% endblock %}
+    </main>
+    <hr>
+    <footer>
+        <p>@reroes - ejemplo académico</p>
+    </footer>
+
+</body>
+</html>
